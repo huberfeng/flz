@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}个人博客{% endblock %}
+
+{% block content %}
+<div id ="contain">
+
+    <h1 style="text-align:center">欢迎光临fhb的博客</h1>
+    <div>
+    {% for blog in blogs %}
+            <div class="blog_body">
+                <div class="blog_title"><a href="/detail/?id={{ blog.id }}">{{ blog.title}}</a></div>
+                <div class="blog_info">
+                    <ul class="blog_info_list">
+                        <li>摘要：{{ blog.brief }}</li>
+                        <li>时间：{{ blog.pub_time }}</li>
+                        <li>阅读量：{{ blog.page_views }}</li>
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
