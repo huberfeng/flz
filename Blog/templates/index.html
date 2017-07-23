@@ -1,24 +1,60 @@
 {% extends "base.html" %}
-{% block title %}个人博客{% endblock %}
+{% block title %}个人博客首页{% endblock %}
 
-{% block content %}
-<div id ="contain">
+
+
 
     <h1 style="text-align:center">欢迎光临fhb的博客</h1>
-    <div>
-    {% for blog in blogs %}
-            <div class="blog_body">
-                <div class="blog_title"><a href="/detail/?id={{ blog.id }}">{{ blog.title}}</a></div>
-                <div class="blog_info">
-                    <ul class="blog_info_list">
-                        <li>摘要：{{ blog.brief }}</li>
-                        <li>时间：{{ blog.pub_time }}</li>
-                        <li>阅读量：{{ blog.page_views }}</li>
-                    </ul>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    {% block title_list %}
+        {% for blog in blogs %}
 
-</div>
+            {% include "list_style.html" %}
+
+        {% endfor %}
+    {% endblock %}
+
+    {% block pagination %}
+        <ul class="pagination">
+
+        {% if blogs.has_previous %}
+            <li><a href="?page={{ blogs.previous_page_number }}"></a></li>
+        {% else %}
+            <li class="active"><a></a></li>
+        {% endif %}
+
+        {% for p in page_range %}
+          {% ifequal p blogs.number %}
+             <li class="active"><a>{{p}}</a></li>
+          {% else %}
+            <li><a href="?page={{p}}" title="第{{p}}页">{{p}}</a><li>
+          {% endifequal %}
+        {% endfor %}
+
+        {% if blogs.has_next %}
+            <li><a href="?page={{ blogs.next_page_number }}"></a></li>
+        {% else %}
+            <li class="active"> <a></a></li>
+        {% endif %}
+        </ul>
+
+    {% endblock %}
+
+{% block lastest_blog%}
+	{% for blog in latest %}
+	<li><a href="/detail/?id={{ blog.id }}" target=_blank>{{ blog.title }}</a></li>
+	{% endfor %}
 {% endblock %}
+
+
+{% block tags %}
+   	<h5>
+      {% include "tag_info.html" %}
+   </h5>
+{% endblock %}
+
+{% block friends %}
+
+  {% include "friends.html" %}
+
+{% endblock %}
+

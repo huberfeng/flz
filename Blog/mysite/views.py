@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Blog, Tag
 from django.shortcuts import render_to_response
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 def __get_blog_info(objs):
     blog = []
@@ -17,14 +19,55 @@ def __get_blog_info(objs):
         )
     return blog
 
+def __pagination(request, objs, display_num=5, after_range=5, before_range=4):
+    paginator = Paginator(objs, display_num)
+
+    try:
+        page = int(request.GET.get('page'))
+    except:
+        page = 1
+    try:
+        objects = paginator.page(page)
+    except EmptyPage:
+        objects = paginator.page(paginator.num_pages)
+    except:
+        objects = paginator.page(1)
+
+    if page > after_range:
+        page_range = paginator.page_range[page - after_range:page + before_range]
+    else:
+        page_range = paginator.page_range[0:page + before_range]
+
+    return objects, page_range
+
+def __get_blog_list(request, obj_list):
+    obj_latest = __get_latest(obj_list)
+    obj_infos_all = __get_blog_info(obj_list)
+    obj_infos, obj_page_range = __pagination(request,obj_infos_all)
+    return obj_latest, obj_infos, obj_page_range
+
+def __get_latest(objs, max_num=3):
+    obj_num = objs.count()
+    latest = []
+
+    if obj_num > max_num:
+        for i in range(max_num):
+            latest.append({'title':objs[i].title, 'id':objs[i].id})
+    else:
+        for i in range(obj_num):
+            latest.append({'title': objs[i].title, 'id': objs[i].id})
+    return latest
 
 def index(request):
     blog_objs = Blog.objects.all()
     tags = Tag.objects.all()
-    blogs = __get_blog_info(blog_objs)
-    for blog in blogs:
-        print("blog_brief", blog['brief'])
-    content = {'blogs': blogs}
+    # blogs = __get_blog_info(blog_objs)
+    latest, blogs, page_range = __get_blog_list(request, blog_objs)
+
+    content = {'latest':latest,
+               'blogs': blogs,
+               'page_range': page_range,
+               }
     return render_to_response('index.html', content)
 
 

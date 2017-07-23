@@ -16,8 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from mysite import views
+
+# for static files in development
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index', views.index),
     url(r'^detail', views.detail)
 ]
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -25,9 +25,9 @@ TEMPLATES_DIRS = (
 SECRET_KEY = '&ehyzw1r_i*pe4g09nv2ny5@mn---cv97+q)m5_ux0np#_ey4v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
