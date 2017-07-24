@@ -1,9 +1,15 @@
 from django.shortcuts import render
-from .models import Blog, Tag
+from .models import Blog, Tag, Category
 from django.shortcuts import render_to_response
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
+__category = {
+    'geek': '技术博客',
+    'life': '生活随笔',
+    'xc': '瞎扯',
+
+}
 def __get_blog_info(objs):
     blog = []
     for blog_obj in objs:
@@ -70,6 +76,16 @@ def index(request):
                }
     return render_to_response('index.html', content)
 
+def geek(request):
+    geek = Category.objects.get(category=__category['geek'])
+    blog_objs = Blog.objects.filter(category=geek)
+    latest, blogs, page_range = __get_blog_list(request, blog_objs)
+
+    content = {'latest': latest,
+               'blogs': blogs,
+               'page_range': page_range,
+               }
+    return render_to_response('index.html', content)
 
 def detail(request):
     blog_id = request.GET.get('id')
