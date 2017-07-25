@@ -73,6 +73,7 @@ def index(request):
     content = {'latest':latest,
                'blogs': blogs,
                'page_range': page_range,
+               'tags': tags,
                }
     return render_to_response('index.html', content)
 
@@ -80,10 +81,24 @@ def geek(request):
     geek = Category.objects.get(category=__category['geek'])
     blog_objs = Blog.objects.filter(category=geek)
     latest, blogs, page_range = __get_blog_list(request, blog_objs)
-
+    tags = Tag.objects.all()
     content = {'latest': latest,
                'blogs': blogs,
                'page_range': page_range,
+               'tags': tags,
+               }
+    return render_to_response('index.html', content)
+
+def tag(request):
+    tag_id = request.GET.get('id')
+    get_tag = Tag.objects.get(id=tag_id)
+    blog_objs = Blog.objects.filter(tags=get_tag)
+    latest, blogs, page_range = __get_blog_list(request, blog_objs)
+    tags = Tag.objects.all()
+    content = {'latest': latest,
+               'blogs': blogs,
+               'page_range': page_range,
+               'tags': tags,
                }
     return render_to_response('index.html', content)
 
@@ -94,3 +109,5 @@ def detail(request):
     blog.save()
     #blog_content = repr(blog.content)
     return render_to_response('detail.html', {'blog': blog})
+
+

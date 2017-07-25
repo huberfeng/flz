@@ -23,6 +23,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', views.index),
+    url(r'^tags', views.tag),
     url(r'^geek',  views.geek),
     url(r'^detail', views.detail)
 ]

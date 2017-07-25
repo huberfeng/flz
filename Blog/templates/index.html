@@ -47,9 +47,11 @@
 
 
 {% block tags %}
-   	<h5>
-      {% include "tag_info.html" %}
-   </h5>
+   	{% for tag in tags %}
+        <a href="/tags/?id={{ tag.id}}">
+            <span class="label label-default">{{ tag.tag }}</span>
+        </a>
+    {% endfor %}
 {% endblock %}
 
 {% block friends %}
