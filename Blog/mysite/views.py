@@ -12,7 +12,10 @@ __category = {
 }
 def __get_blog_info(objs):
     blog = []
+    # tags = []
     for blog_obj in objs:
+        # for tag in blog_obj.tags.all():
+        #     tags.append(tag)
         blog.append(
             {
                 'title': blog_obj.title,
@@ -21,6 +24,7 @@ def __get_blog_info(objs):
                 'brief': blog_obj.brief,
                 'pub_time': blog_obj.pub_time,
                 'page_views': blog_obj.page_views,
+                'tags': blog_obj.tags,
             }
         )
     return blog
@@ -80,6 +84,30 @@ def index(request):
 def geek(request):
     geek = Category.objects.get(category=__category['geek'])
     blog_objs = Blog.objects.filter(category=geek)
+    latest, blogs, page_range = __get_blog_list(request, blog_objs)
+    tags = Tag.objects.all()
+    content = {'latest': latest,
+               'blogs': blogs,
+               'page_range': page_range,
+               'tags': tags,
+               }
+    return render_to_response('index.html', content)
+
+def life(request):
+    life = Category.objects.get(category=__category['life'])
+    blog_objs = Blog.objects.filter(category=life)
+    latest, blogs, page_range = __get_blog_list(request, blog_objs)
+    tags = Tag.objects.all()
+    content = {'latest': latest,
+               'blogs': blogs,
+               'page_range': page_range,
+               'tags': tags,
+               }
+    return render_to_response('index.html', content)
+
+def xc(request):
+    xc = Category.objects.get(category=__category['xc'])
+    blog_objs = Blog.objects.filter(category=xc)
     latest, blogs, page_range = __get_blog_list(request, blog_objs)
     tags = Tag.objects.all()
     content = {'latest': latest,

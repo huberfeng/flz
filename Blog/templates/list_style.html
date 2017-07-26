@@ -1,6 +1,8 @@
 <a href="/detail/?id={{ blog.id }}" target=_blank>
 	<div class="blog_list">
-		<span class="label label-primary">二级标题</span>
+		{% for tag in blog.tags.all %}
+		<span class="label label-primary">{{ tag }}</span>
+		{% endfor %}
 		<div class="blog_title">
 			<h2>
 				{{ blog.title }}

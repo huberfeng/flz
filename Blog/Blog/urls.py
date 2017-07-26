@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^tags', views.tag),
     url(r'^geek',  views.geek),
+    url(r'^life', views.life),
+    url(r'^xc', views.xc),
     url(r'^detail', views.detail)
 ]
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
