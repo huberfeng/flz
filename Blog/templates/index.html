@@ -17,9 +17,9 @@
         <ul class="pagination">
 
         {% if blogs.has_previous %}
-            <li><a href="?page={{ blogs.previous_page_number }}"></a></li>
+            <li><a href="?page={{ blogs.previous_page_number }}">&laquo;</a></li>
         {% else %}
-            <li class="active"><a></a></li>
+            <li class="active"><a>&laquo;</a></li>
         {% endif %}
 
         {% for p in page_range %}
@@ -31,9 +31,9 @@
         {% endfor %}
 
         {% if blogs.has_next %}
-            <li><a href="?page={{ blogs.next_page_number }}"></a></li>
+            <li><a href="?page={{ blogs.next_page_number }}">&raquo;</a></li>
         {% else %}
-            <li class="active"> <a></a></li>
+            <li class="active"> <a>&raquo;</a></li>
         {% endif %}
         </ul>
 

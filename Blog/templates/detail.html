@@ -1,12 +1,66 @@
+<!--<!DOCTYPE html>-->
+<html lang="zh-cn">
+<head>
+	<meta charset="UTF-8">
+	<title>文章详情</title>
+	<link rel="stylesheet" type="text/css" href="/static/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/static/mycss/style.css">
+	<link rel="stylesheet" type="text/css" href="/static/mycss/detail.css">
+</head>
 
-<div id ="contain">
+<body>
+    {% include "header.html" %}
 
-    <h1 style="text-align:center">欢迎光临fhb的博客</h1>
-    <div>
+	<div class="container">
+		<div class="row">
+			<div class=" col-lg-12 col-md-12 col-sm-12 remove_padding">
 
-            <div class="blog_content">
-                {{ blog.content|safe }}
-            </div>
-    </div>
+				<div id="head_img">
+					<img src="/static/img/head_img.jpg"/>
+				</div>
+			</div>
+		</div>
 
-</div>
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs remove_padding">
+
+				<nav class="navbar navbar-inverse" role="navigation" id="navibar">
+				      <ul class="nav navbar-nav">
+				         <li><a href="/">首页</a></li>
+				         <li><a href="/geek">技术博客</a></li>
+				         <li><a href="/life">生活随笔</a></li>
+				         <li><a href="/xc">瞎扯</a></li>
+				      </ul>
+				</nav>
+			</div>
+		</div>
+
+		<div id="content">
+
+			<h1>{{ blog.title }}</h1>
+			<h5 class="blog_info">{{ blog.pub_time }} 阅读量：{{ blog.page_views }}</h5>
+			<h5 class="tag">
+				<span class="glyphicon glyphicon-tags"></span>
+				{% for tag in blog.tags.all %}
+                <a href="/tags/?id={{ tag.id }}" class="tag_link"><span class="lable">{{ tag.tag }}</span> </span>
+                {% endfor %}
+			</h5>
+			<br/>
+			{{ blog.content|safe }}
+
+		</div>
+
+		<div class="row">
+				<div class="col-lg-12 col-md-12 col-sm-12 hidden-xs remove_padding">
+					 {% include "footer.html" %}
+				</div>
+		</div>
+
+	</div>
+
+
+<script type="text/javascript" src="/static/bootstrap/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/static/js/main.js"></script>
+</body>
+</html>

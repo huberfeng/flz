@@ -1,0 +1,160 @@
+#navibar{
+	margin-top: -50px;
+	border-radius: 0px;
+	filter:alpha(opacity=80);
+	-moz-opacity:0.8;
+	-khtml-opacity: 0.8;
+	opacity: 0.8;
+}
+#head_img{
+	width: 100%;
+	overflow: hidden;
+	vertical-align: middle;
+	margin-top: 50px;
+}
+
+#head_img img{
+	width:100%;
+	height: 100%;
+}
+
+.blog_list a,div,h3{
+	/*position: relative;*/
+}
+
+.blog_list{
+	width: 100%;
+	padding:0.25rem 0.25rem 0.25rem 0.1rem;
+	background-color: rgba(34,34,34,0.9);
+	margin-bottom: 1em;
+	vertical-align: middle;
+	}
+
+.blog_list span{
+	font-size: 10px;
+	font-weight: normal;
+	border-radius:0;
+	}
+
+.blog_title{
+	margin-left: 1em;
+	margin-bottom: 1em;
+	}
+
+.blog_title h3{
+
+	text-align: left;
+	margin-bottom: 2em;
+}
+
+.blog_title p{
+	color: #666666;
+	text-align: left;
+
+}
+
+#right_column{
+	width: 100%;
+	float: right;
+}
+
+.right_hr{
+	margin-top: 0;
+	margin-bottom: 0.5rem;
+	border-top:2px solid #555;
+}
+
+#latest{
+	width: 100%;
+	background-color: rgba(34,34,34,0.9);
+	padding: 0.3em 1em 0.5em 0.5em;
+}
+
+#latest h4{
+	text-align: left;
+	vertical-align: middle;
+	margin-left: 0.5em;
+
+}
+#latest ol li{
+	font-size: 0.875rem;
+	font-size: 14px;
+	text-align: left;
+
+}
+#tags{
+	width: 100%;
+	background-color: rgba(34,34,34,0.9);
+	padding: 0.3em 1em 0.5em 0.5em;
+	margin-top: 1em;
+	/*text-align: center;*/
+}
+
+#tags h4{
+	text-align: left;
+	font-size: 16px;
+	vertical-align: middle;
+	margin-left: 0.5em;
+
+}
+
+#tags a span{
+	font-weight: normal;
+	font-size: 12px;
+	line-height: 2.5em;
+	margin-left: 0.5em;
+
+}
+
+#friends{
+	width: 100%;
+	background-color: rgba(34,34,34,0.9);
+	padding: 0.3em 1em 0.5em 0.5em;
+	margin-top: 1em;
+}
+
+#friends h4{
+	text-align: left;
+	vertical-align: middle;
+	margin-left: 0.5em;
+
+}
+
+
+#friends ul li{
+	font-size: 14px;
+	text-align: left;
+	list-style: circle;
+}
+
+.pagination li a{
+	background-color: rgba(34,34,34,0.9);
+	color: #dddddd;
+	border-color: #444444;
+	font-size: 14px;
+}
+
+.pagination li a:hover{
+	background-color: #666666;
+	border:none;
+	color: #ffffff;
+}
+
+.pagination > .active > a
+ {
+  color: #aaa;
+  cursor: default;
+  border-color: #444444;
+  background-color: rgba(85,85,85,0.9);
+}
+
+.pagination > .active > a:hover{
+	color: #aaa;
+	background-color: #555555;
+}
+
+#return_top{
+    position: fixed;
+    bottom: 3rem;
+    right: 3rem;
+}

@@ -25,7 +25,7 @@ TEMPLATES_DIRS = (
 SECRET_KEY = '&ehyzw1r_i*pe4g09nv2ny5@mn---cv97+q)m5_ux0np#_ey4v'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -126,4 +126,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT=os.path.join(BASE_DIR,'static').replace('\\','/')
+STATIC_ROOT = os.path.join(BASE_DIR,'static_root').replace('\\','/')
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR,'static_common').replace('\\','/'),
+)
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder"
+)
