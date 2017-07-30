@@ -24,11 +24,10 @@
 		background-color: rgba(34,34,34,0.9);
 		color: #bbb;
 		text-align: left;
-		font-size: 0.875rem;
 		font-size: 14px;
 		overflow: hidden;
 		margin: 0;
-		padding: 0 0.8em 0.8em 0.8em;
+		padding: 0 1em 1em 1em;
 	}
 
 .blog_info{
@@ -49,4 +48,8 @@
 	font-size: 1em;
 	line-height: 2.5em;
 	margin-right: 0.5em;
+}
+
+pre{
+    padding: 0px;
 }

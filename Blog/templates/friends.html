@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<ul>
+	{% for friend in friends %}
+	<li><a href="{{ friend.friend_url }}" target="_blank">
+		{{ friend.name }}</a>
+	</li>
 
-</body>
-</html>
+	{% endfor %}
+
+</ul>

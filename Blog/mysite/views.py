@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Blog, Tag, Category
+from .models import Blog, Tag, Category, Friend
 from django.shortcuts import render_to_response
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -16,6 +16,8 @@ def __get_blog_info(objs):
     for blog_obj in objs:
         # for tag in blog_obj.tags.all():
         #     tags.append(tag)
+        if blog_obj.brief == "profile":
+            continue
         blog.append(
             {
                 'title': blog_obj.title,
@@ -71,6 +73,7 @@ def __get_latest(objs, max_num=3):
 def index(request):
     blog_objs = Blog.objects.all()
     tags = Tag.objects.all()
+    friends = Friend.objects.all()
     # blogs = __get_blog_info(blog_objs)
     latest, blogs, page_range = __get_blog_list(request, blog_objs)
 
@@ -78,6 +81,7 @@ def index(request):
                'blogs': blogs,
                'page_range': page_range,
                'tags': tags,
+               'friends': friends,
                }
     return render_to_response('index.html', content)
 
@@ -138,4 +142,6 @@ def detail(request):
     #blog_content = repr(blog.content)
     return render_to_response('detail.html', {'blog': blog})
 
-
+def profile(request):
+    blog = Blog.objects.get(brief="profile")
+    return render_to_response('detail.html', {'blog': blog})
