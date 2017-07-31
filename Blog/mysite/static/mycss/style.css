@@ -61,3 +61,12 @@ a:active{
     margin-right: 1em;
 }
 
+#footer{
+	margin-bottom: 3em;
+	color: #444;
+	text-align: center;
+}
+#footer hr{
+	border-color: #444;
+}
+

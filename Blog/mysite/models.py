@@ -42,9 +42,34 @@ class Blog(models.Model):
         ordering = ['-pub_time']
 
 
+class Profile_Tag(models.Model):
+    tag = models.CharField(max_length=30, db_index=True,unique=True)
+    add_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.tag
+
+    class Meta:
+        ordering = ['-add_time']
+
+
+class Profile(models.Model):
+    title = models.CharField('标题', max_length=50)
+    head_pic_url = models.CharField('头图链接', max_length=250,default='/static/img/default.jpg',null=True,blank=True)
+    pub_time = models.DateTimeField(auto_now_add=True)
+    content = RichTextUploadingField('正文', blank=True, null=True)
+    tags = models.ManyToManyField(Profile_Tag, blank=True, verbose_name=u'标签')
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-pub_time']
+
+
 class Friend(models.Model):
     name = models.CharField(max_length=50, db_index=True, unique=True)
-    friend_url = models.CharField('链接', max_length=250, default='#')
+    friend_url = models.CharField('链接', max_length=250, default='http://')
     add_time = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Blog, Tag, Category, Friend
+from .models import Blog, Tag, Category, Friend, Profile
 from django.shortcuts import render_to_response
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -16,8 +16,8 @@ def __get_blog_info(objs):
     for blog_obj in objs:
         # for tag in blog_obj.tags.all():
         #     tags.append(tag)
-        if blog_obj.brief == "profile":
-            continue
+        # if blog_obj.brief == "profile":
+        #     continue
         blog.append(
             {
                 'title': blog_obj.title,
@@ -143,5 +143,9 @@ def detail(request):
     return render_to_response('detail.html', {'blog': blog})
 
 def profile(request):
-    blog = Blog.objects.get(brief="profile")
-    return render_to_response('detail.html', {'blog': blog})
+    profile = Profile.objects.get(title='Profile')
+    updates = Profile.objects.get(title='Updates')
+    content = {'profile': profile,
+               'updates': updates,
+               }
+    return render_to_response('profile.html', content)
